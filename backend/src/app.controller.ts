@@ -14,7 +14,7 @@ export class AppController {
     @Query() { n }: UpperLimitQuery,
   ): Promise<MediansTuple> {
     const primes = this.primesService.getPrimes(n);
-    this.logger.debug(`primes: ${primes}`);
+    // this.logger.debug(`primes: ${primes}`);
 
     const medianPrimes = getMediansOfSortedArray(primes);
     return medianPrimes;
