@@ -1,4 +1,4 @@
-import { Controller, Get, Logger, ParseIntPipe, Query } from '@nestjs/common';
+import { Controller, Get, Logger, Query } from '@nestjs/common';
 import { UpperLimitQuery } from './dto/find-median-prime-numbers.query';
 import { PrimesService } from './primes.service';
 import { MediansTuple, getMediansOfSortedArray } from './utils';
@@ -11,7 +11,7 @@ export class AppController {
 
   @Get('/median-prime-numbers')
   async findMedianPrimeNumbers(
-    @Query(ParseIntPipe) { n }: UpperLimitQuery,
+    @Query() { n }: UpperLimitQuery,
   ): Promise<MediansTuple> {
     const primes = this.primesService.getPrimes(n);
     this.logger.debug(`primes: ${primes}`);
