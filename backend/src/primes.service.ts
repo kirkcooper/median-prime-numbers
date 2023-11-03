@@ -1,7 +1,7 @@
 import { Injectable } from '@nestjs/common';
 
 const FIRST_PRIME = 2;
-const INIT_UPPER_LIMIT = 10_000;
+const INIT_UPPER_LIMIT = 100_000;
 
 @Injectable()
 export class PrimesService {
