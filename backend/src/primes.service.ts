@@ -79,9 +79,4 @@ export class PrimesService {
     console.timeEnd('getPrimes');
     return primeNumbers;
   }
-
-  getPrimesUcached(upperLimit: number): number[] {
-    const primes = this.sieveOfEratosthenes(upperLimit);
-    return this.convertToArrayOfNumbers(primes);
-  }
 }
