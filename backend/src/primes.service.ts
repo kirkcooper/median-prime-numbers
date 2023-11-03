@@ -63,23 +63,20 @@ export class PrimesService {
   getPrimes(upperLimit: number, useCache: boolean = true): number[] {
     console.time('getPrimes');
 
-    let primes: boolean[] = [];
+    let primes: boolean[];
 
-    if (useCache) {
-      primes = this.cachedPrimes;
-    }
-
-    if (upperLimit > primes.length - 1) {
-      // Calculate more primes
+    if (!useCache) {
       primes = this.sieveOfEratosthenes(upperLimit);
-
-      // Update cached primes
-      this.cachedPrimes = primes;
+    } else {
+      if (upperLimit > this.cachedPrimes.length - 1) {
+        // Find more primes
+        this.cachedPrimes = this.sieveOfEratosthenes(upperLimit);
+      }
+      primes = this.cachedPrimes;
     }
 
     const primeNumbers = this.convertToArrayOfNumbers(primes, upperLimit);
     console.timeEnd('getPrimes');
-
     return primeNumbers;
   }
 
